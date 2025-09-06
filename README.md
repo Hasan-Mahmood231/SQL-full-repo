@@ -8,13 +8,13 @@
   <img src="https://media.giphy.com/media/du3J3cXyzhj75IOgvA/giphy.gif" width="320" alt="SQL Animation"/>
 </p>  
 
-Welcome to my **SQL Playground** 🎉 — a collection of clean, well-structured SQL scripts where I practice, learn, and share my journey with databases.  
+Welcome to my **SQL Playground**  a collection of clean, well-structured SQL scripts where I practice, learn, and share my journey with databases.  
 
 This repo is built to be **beginner-friendly**, with every `.sql` file written in **clean format + comments** for easy understanding.  
 
 ---
 
-## ✨ What’s Inside?  
+##  What’s Inside?  
 
 - 🗂 **Schema Files** → Database tables, keys & relations  
 - 📥 **Insert Scripts** → Sample data for practice  
@@ -24,9 +24,10 @@ This repo is built to be **beginner-friendly**, with every `.sql` file written i
 
 ---
 
-## 🚀 Quick Start  
+##  Quick Start  
 
 Clone this repository:  
 ```bash
 git clone https://github.com/Hasan-Mahmood231/SQL-full-repo.git
 cd SQL-full-repo
+
