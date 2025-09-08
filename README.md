@@ -23,11 +23,14 @@ This repo is built to be **beginner-friendly**, with every `.sql` file written i
 - 💾 **Backup Dumps** → Full exports to restore databases  
 
 ---
-
+##  Future Enhancements
+This repository will be updated from time to time with new SQL queries, examples, and improvements. Stay connected to see the latest additions as I continue learning and practicing SQL.
+---
 ##  Quick Start  
 
 Clone this repository:  
 ```bash
 git clone https://github.com/Hasan-Mahmood231/SQL-full-repo.git
 cd SQL-full-repo
+
 
