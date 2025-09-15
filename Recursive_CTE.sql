@@ -1,0 +1,16 @@
+--Number from 1 to 20.
+WITH SERISE AS 
+(
+	SELECT
+	1 MyNumber
+
+	UNION ALL
+
+	SELECT
+	MyNumber +1
+	FROM SERISE 
+	WHERE	MyNumber <20
+)
+
+SELECT *
+FROM SERISE
