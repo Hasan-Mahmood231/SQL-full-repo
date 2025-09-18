@@ -1,8 +1,9 @@
--- select all col where the data accending order.
-SELECT
-	Country,
-	sum(Score) AS Aggergated_score
-FROM Sales.Customers
---WHERE Country = 'USA'
---ORDER BY Score DESC
-GROUP BY Country
+
+
+ALTER PROCEDURE dd @country NVARCHAR(34)
+AS
+BEGIN
+	SELECT*
+	FROM Sales.Customers c
+	WHERE c.Country = @country
+END
