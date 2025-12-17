@@ -1,0 +1,37 @@
+CREATE DATABASE DB1;
+CREATE SCHEMA DB2;
+
+USE DB1;
+show TABLES;
+
+CREATE TABLE T1(
+Reg VARCHAR(30) PRIMARY KEY NOT NULL,
+name VARCHAR(100) NOT NULL,
+adress VARCHAR(150) DEFAULT 'NOT GIVEN'
+);
+
+INSERT INTO t1 values 
+( '23', 'ali' , 'xyz');
+
+SELECT *
+FROM T1
+
+INSERT INTO Student (Reg) values('322')
+
+INSERT INTO Student (Reg, name) 
+values  ('45','aaa'),
+		('90','bb');
+
+update Student set name = 'hh' WHERE Reg = '45';
+DELETE FROM Student WHERE Reg = '45'
+TRUNCATE TABLE STUDENT
+DROP TABLE Student
+DROP DATABASE DB1
+
+CREATE DATABASE T1
+INSERT INTO T1 
+VALUES 
+	('1','ABC','KOHAT'),
+	('2','BCD','PESHAWER')
+SELECT adress FROM T1
+CREATE TABLE T2  values(SELECT adress  FROM T1)
