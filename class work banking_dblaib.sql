@@ -43,3 +43,17 @@ WHERE LastTransactionAmount > 15000; -- This is our "Suspicious" Threshold
 SELECT TOP 5 FullName, AccountNumber, Balance
 FROM BankMaster
 ORDER BY Balance DESC; -- DESC means Highest to Lowest
+
+
+
+
+
+SELECT 
+    B.FullName, 
+    B.Balance AS BankBalance, 
+    O.OrderID, 
+    O. AS OrderCost
+FROM BankingDB.dbo.BankMaster AS B
+JOIN SalesDB.Sales.Orders AS O
+ON B.FullName = O.CustomerName -- Joining on Name
+WHERE O.TotalAmount > B.Balance;
