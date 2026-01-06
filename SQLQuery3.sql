@@ -1,193 +1,82 @@
-/*
-=============================================================
-Database Creation and Table Setup Script
-=============================================================
-Script Purpose:
-    This script creates a new SQL Server database named 'SalesDB'. 
-    If the database already exists, it is dropped to ensure a clean setup. 
-    The script then creates three tables: 'customers', 'orders', and 'employees' 
-    with their respective schemas, and populates them with sample data.
-    
-WARNING:
-    Running this script will drop the entire 'SalesDB' database if it exists, 
-    permanently deleting all data within it. Proceed with caution and ensure you 
-    have proper backups before executing this script.
-*/
-
-USE master;
+USE [classicmodels];
 GO
 
--- Drop and recreate the 'SalesDB' database
-IF EXISTS (SELECT 1 FROM sys.databases WHERE name = 'SalesDB')
-BEGIN
-    ALTER DATABASE SalesDB SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
-    DROP DATABASE SalesDB;
-END;
-GO
+-- 1. OFFICES (Already completed in previous steps)
 
--- Create the 'SalesDB' database
-CREATE DATABASE SalesDB;
-GO
+-- 2. EMPLOYEES (Next 9 rows to reach the total of 23)
+INSERT INTO [employees] ([employeeNumber],[lastName],[firstName],[extension],[email],[officeCode],[reportsTo],[jobTitle]) VALUES 
+(1401,'Castillo','Pamela','x2759','pcastillo@classicmodelcars.com','4',1102,'Sales Rep'),
+(1501,'Bott','Larry','x2311','lbott@classicmodelcars.com','7',1102,'Sales Rep'),
+(1504,'Jones','Barry','x102','bjones@classicmodelcars.com','7',1102,'Sales Rep'),
+(1611,'Fixter','Andy','x101','afixter@classicmodelcars.com','6',1088,'Sales Rep'),
+(1612,'Marsh','Peter','x102','pmarsh@classicmodelcars.com','6',1088,'Sales Rep'),
+(1619,'King','Tom','x103','tking@classicmodelcars.com','6',1088,'Sales Rep'),
+(1621,'Nishi','Mami','x101','mnishi@classicmodelcars.com','5',1056,'Sales Rep'),
+(1625,'Kato','Yoshimi','x102','ykato@classicmodelcars.com','5',1621,'Sales Rep'),
+(1702,'Gerard','Martin','x2312','mgerard@classicmodelcars.com','4',1102,'Sales Rep');
 
-USE SalesDB;
-GO
+-- 3. CUSTOMERS (Next 10 Rows)
+INSERT INTO [customers] ([customerNumber],[customerName],[contactLastName],[contactFirstName],[phone],[addressLine1],[addressLine2],[city],[state],[postalCode],[country],[salesRepEmployeeNumber],[creditLimit]) VALUES 
+(148,'Dragon Souveniers, Ltd.','Natividad','Eric','+65 221 7555','Bronz Sok.','Bronz Apt. 3/6 Tesvikiye','Singapore',NULL,'079903','Singapore',1621,'103800.00'),
+(151,'Muscle Machine Inc','Young','Jeff','2125557413','4092 Furth Circle','Suite 400','NYC','NY','10022','USA',1286,'138500.00'),
+(157,'Diecast Classics Inc.','Leong','Kelvin','2155551555','7586 Pompton St.',NULL,'Allentown','PA','70267','USA',1216,'100600.00'),
+(161,'Technics Stores Inc.','Hashimoto','Juri','6505556809','9408 Furth Circle',NULL,'Burlingame','CA','94217','USA',1165,'84600.00'),
+(166,'Handji Gifts& Co','Victorino','Wendy','+65 224 1555','106 Linden Road Sandown','2nd Floor','Singapore',NULL,'069045','Singapore',1612,'97900.00'),
+(167,'Herkku Gifts','Oeztan','Veysel','+47 2267 3215','Brehmen St. 121','PR 334 Sentrum','Bergen',NULL,'N 5804','Norway',1504,'96800.00'),
+(168,'American Souvenirs Inc','Franco','Keith','2035557845','149 Spinnaker Dr.','Suite 101','New Haven','CT','97823','USA',1286,'0.00'),
+(169,'Porto Imports Co.','de Castro','Isabel ','(1) 356-5555','Estrada da saúde n. 58',NULL,'Lisboa',NULL,'1756','Portugal',NULL,'0.00'),
+(171,'Daedalus Designs Imports','Rancé','Martine ','20.16.1555','184, chaussée de Tournai',NULL,'Lille',NULL,'59000','France',1370,'82900.00'),
+(172,'La Corne D''abondance, Co.','Bertrand','Marie','(1) 42.34.2555','265, boulevard Charonne',NULL,'Paris',NULL,'75012','France',1337,'84300.00');
 
--- Check if the schema 'Sales' exists
-IF EXISTS (SELECT 1 FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME = 'Sales')
-BEGIN
-    -- If it does exist, drop the 'Sales' schema
-    DROP SCHEMA Sales;
-END;
-GO
+-- 4. PRODUCTS (Next 10 Rows)
+INSERT INTO [products] ([productCode],[productName],[productLine],[productScale],[productVendor],[productDescription],[quantityInStock],[buyPrice],[MSRP]) VALUES 
+('S12_4473','1957 Chevy Pickup','Trucks and Buses','1:12','Exoto Designs','1:12 scale die-cast about 20 inch long Hood opens, Rubber wheels',6125,'55.70','118.50'),
+('S12_4675','1969 Dodge Charger','Classic Cars','1:12','Welly Diecast Productions','Detailed model of the 1969 Dodge Charger.',7323,'58.73','115.16'),
+('S18_1097','1940 Ford Pickup Truck','Trucks and Buses','1:18','Studio M Art Models','Soft rubber tires, working steering, rubber mud guards.',2613,'58.33','116.67'),
+('S18_1129','1993 Mazda RX-7','Classic Cars','1:18','Highway 66 Mini Classics','Opening hood, doors, engine, rear spoiler.',3975,'83.51','141.54'),
+('S18_1342','1937 Lincoln Berline','Vintage Cars','1:18','Motor City Art Classics','Features opening engine cover, doors, trunk.',8693,'60.62','102.74'),
+('S18_1367','1936 Mercedes-Benz 500K Special Roadster','Vintage Cars','1:18','Studio M Art Models','Heavy die-cast metal, independent spring suspension.',8635,'24.26','53.91'),
+('S18_1589','1965 Aston Martin DB5','Classic Cars','1:18','Classic Metal Creations','Full wire wheels and doors that open.',9042,'65.96','124.44'),
+('S18_1662','1980s Black Hawk Helicopter','Planes','1:18','Red Start Diecast','1:18 scale replica, hand-assembled.',5330,'77.27','157.69'),
+('S18_1749','1917 Grand Touring Sedan','Vintage Cars','1:18','Welly Diecast Productions','Detailed engine and instrument panel, tufted upholstery.',2724,'86.70','170.00'),
+('S18_1889','1948 Porsche 356-A Roadster','Classic Cars','1:18','Gearbox Collectibles','Superb detail, opening doors, 4 wheel suspension.',8826,'53.90','77.00');
 
--- Create the 'Sales' Schema using dynamic SQL
-EXEC sys.sp_executesql N'CREATE SCHEMA Sales;';
-GO
+-- 5. ORDERS (Next 10 Rows)
+INSERT INTO [orders] ([orderNumber],[orderDate],[requiredDate],[shippedDate],[status],[comments],[customerNumber]) VALUES 
+(10114,'2003-04-01','2003-04-07','2003-04-02','Shipped',NULL,172),
+(10115,'2003-04-04','2003-04-12','2003-04-07','Shipped',NULL,424),
+(10116,'2003-04-11','2003-04-19','2003-04-13','Shipped',NULL,381),
+(10117,'2003-04-16','2003-04-24','2003-04-17','Shipped',NULL,148),
+(10118,'2003-04-21','2003-04-29','2003-04-26','Shipped','Aware of MSRP.',216),
+(10119,'2003-04-28','2003-05-05','2003-05-02','Shipped',NULL,382),
+(10120,'2003-04-29','2003-05-08','2003-05-01','Shipped',NULL,114),
+(10121,'2003-05-07','2003-05-13','2003-05-13','Shipped',NULL,353),
+(10122,'2003-05-08','2003-05-16','2003-05-13','Shipped',NULL,350),
+(10123,'2003-05-20','2003-05-29','2003-05-22','Shipped',NULL,103);
 
--- ======================================================
--- Table: customers
--- ======================================================
+-- 6. ORDER DETAILS (Next 10 Rows)
+INSERT INTO [orderdetails] ([orderNumber],[productCode],[quantityOrdered],[priceEach],[orderLineNumber]) VALUES 
+(10103,'S18_2432',22,'58.34',2),
+(10103,'S18_2949',27,'92.19',12),
+(10103,'S18_2957',35,'61.84',14),
+(10103,'S18_3136',25,'86.92',13),
+(10103,'S18_3320',46,'86.31',16),
+(10103,'S18_4600',36,'98.07',5),
+(10103,'S18_4668',41,'40.75',9),
+(10103,'S24_2300',36,'107.34',1),
+(10103,'S24_4258',25,'88.62',15),
+(10103,'S32_1268',31,'92.46',3);
 
-CREATE TABLE Sales.Customers (
-    CustomerID INT NOT NULL,
-    FirstName VARCHAR(50),
-    LastName VARCHAR(50),
-    Country VARCHAR(50),
-    Score INT,
-    CONSTRAINT PK_customers PRIMARY KEY (CustomerID)
-);
-GO
-
--- Insert data into Customer table
-INSERT INTO Sales.Customers 
-VALUES
-    (1, 'Jossef', 'Goldberg', 'Germany', 350),
-    (2, 'Kevin', 'Brown', 'USA', 900),
-    (3, 'Mary', NULL, 'USA', 750),
-    (4, 'Mark', 'Schwarz', 'Germany', 500),
-    (5, 'Anna', 'Adams', 'USA', NULL);
-GO
-
--- ======================================================
--- Table: Employee
--- ======================================================
-
--- Create Employee table
-CREATE TABLE Sales.Employees (
-    EmployeeID INT NOT NULL,
-    FirstName VARCHAR(50),
-    LastName VARCHAR(50),
-    Department VARCHAR(50),
-    BirthDate DATE,
-    Gender CHAR(1),
-    Salary INT,
-	ManagerID INT,
-	CONSTRAINT PK_employees PRIMARY KEY (EmployeeID)
-);
-GO
-
--- Insert data into Employee table
-INSERT INTO Sales.Employees
-VALUES
-    (1, 'Frank', 'Lee', 'Marketing', '1988-12-05', 'M', 55000, null),
-    (2, 'Kevin', 'Brown', 'Marketing', '1972-11-25', 'M', 65000, 1),
-    (3, 'Mary', null, 'Sales', '1986-01-05', 'F', 75000, 1),
-    (4, 'Michael', 'Ray', 'Sales', '1977-02-10', 'M', 90000, 2),
-    (5, 'Carol', 'Baker', 'Sales', '1982-02-11', 'F', 55000, 3);
-GO
-
--- ======================================================
--- Table: Products
--- ======================================================
-
--- Create Products table
-CREATE TABLE Sales.Products (
-    ProductID INT NOT NULL,
-    Product VARCHAR(50),
-    Category VARCHAR(50),
-    Price INT,
-	CONSTRAINT PK_products PRIMARY KEY (ProductID)
-);
-GO
-
--- Insert data into Products table
-INSERT INTO Sales.Products (ProductID, Product, Category, Price)
-VALUES
-    (101, 'Bottle', 'Accessories', 10),
-    (102, 'Tire', 'Accessories', 15),
-    (103, 'Socks', 'Clothing', 20),
-    (104, 'Caps', 'Clothing', 25),
-    (105, 'Gloves', 'Clothing', 30);
-GO
-
--- ======================================================
--- Table: orders
--- ======================================================
-
--- Create Orders table
-CREATE TABLE Sales.Orders (
-    OrderID INT NOT NULL,
-	ProductID INT,
-    CustomerID INT,
-    SalesPersonID INT,
-    OrderDate DATE,
-    ShipDate DATE,
-    OrderStatus VARCHAR(50),
-	ShipAddress VARCHAR(255),
-	BillAddress VARCHAR(255),
-    Quantity INT,
-    Sales INT,
-	CreationTime DATETIME2,
-	CONSTRAINT PK_orders PRIMARY KEY (OrderID)
-);
-GO
-
--- Insert data into Orders table
-INSERT INTO Sales.Orders 
-VALUES
-    (1,  101, 2, 3, '2025-01-01', '2025-01-05', 'Delivered','9833 Mt. Dias Blv.', '1226 Shoe St.',  1, 10, '2025-01-01T12:34:56'),
-    (2,  102, 3, 3, '2025-01-05', '2025-01-10', 'Shipped','250 Race Court',NULL, 1, 15, '2025-01-05T23:22:04'),
-    (3,  101, 1, 5, '2025-01-10', '2025-01-25', 'Delivered','8157 W. Book','8157 W. Book', 2, 20, '2025-01-10T18:24:08'),
-    (4,  105, 1, 3, '2025-01-20', '2025-01-25', 'Shipped', '5724 Victory Lane', '', 2, 60, '2025-01-20T05:50:33'),
-    (5,  104, 2, 5, '2025-02-01', '2025-02-05', 'Delivered',NULL, NULL, 1, 25, '2025-02-01T14:02:41'),
-    (6,  104, 3, 5, '2025-02-05', '2025-02-10', 'Delivered','1792 Belmont Rd.',NULL, 2, 50, '2025-02-06T15:34:57'),
-    (7,  102, 1, 1, '2025-02-15', '2025-02-27', 'Delivered','136 Balboa Court', '', 2, 30, '2025-02-16T06:22:01'),
-    (8,  101, 4, 3, '2025-02-18', '2025-02-27', 'Shipped','2947 Vine Lane','4311 Clay Rd', 3, 90, '2025-02-18T10:45:22'),
-    (9,  101, 2, 3, '2025-03-10', '2025-03-15', 'Shipped','3768 Door Way', '', 2, 20,'2025-03-10T12:59:04'),
-    (10, 102, 3, 5, '2025-03-15', '2025-03-20', 'Shipped',NULL, NULL, 0, 60,'2025-03-16T23:25:15');
-GO
-
--- ======================================================
--- Table: OrdersArchive
--- ======================================================
-
--- Create OrdersArchive table
-CREATE TABLE Sales.OrdersArchive (
-    OrderID INT,
-	ProductID INT,
-    CustomerID INT,
-    SalesPersonID INT,
-    OrderDate DATE,
-    ShipDate DATE,
-    OrderStatus VARCHAR(50),
-	ShipAddress VARCHAR(255),
-	BillAddress VARCHAR(255),
-    Quantity INT,
-    Sales INT,
-	CreationTime DATETIME2
-);
-GO
-
-INSERT INTO Sales.OrdersArchive 
-VALUES
-    (1, 101,2 , 3, '2024-04-01', '2024-04-05', 'Shipped','123 Main St', '456 Billing St', 1, 10, '2024-04-01T12:34:56'),
-    (2, 102,3 , 3, '2024-04-05', '2024-04-10', 'Shipped','456 Elm St', '789 Billing St', 1, 15, '2024-04-05T23:22:04'),
-    (3, 101, 1, 4, '2024-04-10', '2024-04-25', 'Shipped','789 Maple St','789 Maple St', 2, 20, '2024-04-10T18:24:08'),
-    (4, 105,1 , 3, '2024-04-20', '2024-04-25', 'Shipped',   '987 Victory Lane', '', 2, 60, '2024-04-20T05:50:33'),
-    (4, 105,1 , 3, '2024-04-20', '2024-04-25', 'Delivered', '987 Victory Lane', '', 2, 60, '2024-04-20T14:50:33'),
-    (5, 104,2 , 5, '2024-05-01', '2024-05-05', 'Shipped','345 Oak St', '678 Pine St', 1, 25, '2024-05-01T14:02:41'),
-    (6, 104, 3, 5, '2024-05-05', '2024-05-10', 'Delivered','543 Belmont Rd.',NULL, 2, 50, '2024-05-06T15:34:57'),
-    (6, 104, 3, 5, '2024-05-05', '2024-05-10', 'Delivered','543 Belmont Rd.','3768 Door Way', 2, 50, '2024-05-07T13:22:05'),
-    (6, 101, 3, 5, '2024-05-05', '2024-05-10', 'Delivered','543 Belmont Rd.','3768 Door Way', 2, 50, '2024-05-12T20:36:55'),
-	(7, 102,3 , 5, '2024-06-15', '2024-06-20', 'Shipped','111 Main St', '222 Billing St', 0, 60,'2024-06-16T23:25:15');
+-- 7. PAYMENTS (Next 10 Rows)
+INSERT INTO [payments] ([customerNumber],[checkNumber],[paymentDate],[amount]) VALUES 
+(121,'FD317790','2003-10-28','1491.38'),
+(121,'KI831359','2004-11-04','17876.32'),
+(121,'MA302151','2004-11-28','34638.14'),
+(124,'AE215433','2005-03-05','101244.59'),
+(124,'BG255406','2004-08-28','85410.87'),
+(124,'CQ287967','2003-04-11','11044.30'),
+(124,'ET64396','2005-04-16','83598.04'),
+(124,'HI366474','2004-12-27','47142.70'),
+(124,'HR86578','2004-11-02','55639.66'),
+(124,'KI131716','2003-08-15','111654.40');
 GO
