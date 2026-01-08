@@ -67,5 +67,16 @@ SELECT
 orderNumber,
 sum(quantityOrdered * priceEach) as total_doler
 FROM classicmodels.orderdetails
-group by orderNumber
+group by orderNumber;
+
+-- Top Spending Customers: List the Customer Name and the total amount of money 
+-- they have paid so far (Join Customers with Payments).
+SELECT 
+C.customerName,
+P.amount
+FROM classicmodels.customers AS C
+LEFT JOIN classicmodels.payments AS P
+ON C.customerNumber = P.customerNumber
+order by P.amount desc;
+
 
