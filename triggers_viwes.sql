@@ -78,7 +78,7 @@ END;
 GO
 
 
---***********************************************NOW CREATE THE VIEW******************************************************************
+-- ***********************************************NOW CREATE THE VIEW******************************************************************
 /*
    1. VIEW: vw_InvestmentROI
    Purpose: Shows the businessman exactly which assets (Crypto, Retail, etc.) 

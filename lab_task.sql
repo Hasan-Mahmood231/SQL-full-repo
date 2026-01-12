@@ -24,9 +24,14 @@ FROM classicmodels.orderdetails
 GROUP BY orderNumber;
 
 SELECT *
-FROM classicmodels.products
+FROM classicmodels.products;
 
-
+-- Find customers who have placed more than 5 orders and have a total payment amount exceeding $50,000
+SELECT *
+FROM classicmodels.customers;
+SELECT *
+FROM classicmodels.orders
+WHERE STATUS = 'Resolved'
 
 
 
