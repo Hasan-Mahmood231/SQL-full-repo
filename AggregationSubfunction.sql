@@ -25,6 +25,7 @@ CASE
 	COUNT(NULLIF(BillAddress,'')) OVER() AS Bill_Address,
 	NULLIF(BillAddress,''),	--by this line we put null in emptyspaces.
 	--LEN(BillAddress) AS length_bill
+	
 
 	--find the dublicate data.
 	COUNT(*) OVER(PARTITION BY OrderID) AS UNIQE_VAL
