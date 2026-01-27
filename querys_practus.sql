@@ -114,6 +114,102 @@ LEFT JOIN classicmodels.orderdetails AS o
     ON p.productCode = o.productCode
 WHERE o.productCode IS NULL;
 
+-- List all products with a buyPrice between 50 and 100
+SELECT *
+FROM classicmodels.products
+WHERE buyPrice > 50 AND buyPrice < 100;
+
+-- customer and phon of all customer live in USA.
+SELECT 
+customerName,
+phone
+FROM classicmodels.customers
+WHERE country = 'USA';
+
+-- Find all customers who do not have a value in the addressLine2 column
+SELECT *
+FROM classicmodels.customers
+WHERE addressLine2 IS NULL;
+
+-- List all employees whose lastName starts with the letter 'B'.
+SELECT *
+FROM classicmodels.employees
+WHERE lastName LIKE 'B%';
+
+-- Basic Exclusion: List all products that do not start with the letter 'S'.
+select *
+from classicmodels.products
+where productName  not like '1%';
+
+-- Position Check: Retrieve all employees whose lastName has 'a' as the second letter.
+SELECT *
+FROM classicmodels.employees
+WHERE lastName LIKE '_A%';
+
+-- Find all customers whose city starts with 'L' and ends with 'n'.
+SELECT *
+FROM classicmodels.customers
+WHERE city LIKE 'L%n';
+
+-- List all products where the description contains the word 'Classic' anywhere in the text.
+SELECT *
+FROM classicmodels.products
+WHERE productDescription LIKE '%Classic%';
+
+
+-- Find all employees whose lastName starts with any letter between 'A' and 'E' (Hint: LIKE '[A-E]%').
+SELECT *
+FROM classicmodels.employees
+WHERE lastName LIKE	'[A-E]%';
+
+-- Find all products with a quantityInStock between 1000 and 5000.
+select * from classicmodels.products
+where quantityInStock >= 1000 and quantityInStock <= 5000;
+
+-- List all customers alphabetically by their name (A to Z).
+select *
+from classicmodels.customers
+order by country;
+
+-- Display the top 10 most expensive products (MSRP) from highest to lowest.
+select
+ *
+from classicmodels.products
+order by buyPrice desc
+;
+-- Count the total number of orders placed in the database.
+select 
+count(*)
+from classicmodels.orders;
+
+-- Show the customerName and the orderNumber for every order placed. (Join customers and orders)
+SELECT *
+FROM classicmodels.customers;
+
+
+-- Show all orders that are currently 'In Process' or 'On Hold'.
+select *
+from classicmodels.orders
+where status = 'in Process' or 'On Hold';
+
+-- Find all customers who do not have a value in the addressLine2 column.
+select *
+from classicmodels.customers
+where addressLine2 IS NULL ;
+
+-- List all employees whose lastName starts with the letter 'B'.
+SELECT *
+FROM classicmodels.employees
+WHERE lastName LIKE 'B%';
+
+-- Retrieve all employees whose lastName has 'a' as the second letter.
+SELECT *
+FROM classicmodels.employees
+WHERE lastName LIKE '_a%'
+
+
+
+
 
 
 
