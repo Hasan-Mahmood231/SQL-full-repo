@@ -205,12 +205,18 @@ WHERE lastName LIKE 'B%';
 -- Retrieve all employees whose lastName has 'a' as the second letter.
 SELECT *
 FROM classicmodels.employees
-WHERE lastName LIKE '_a%'
+WHERE lastName LIKE '_a%';
 
+-- make new table and insert data from the table of customer 
+CREATE TABLE IF NOT exists `st1` AS 
+	SELECT *
+	FROM classicmodels.employees;
 
+create user 'hassan' @'localhost'
+identified by '123';
 
-
-
+show grants for 'hassan' @'localhost';
+drop user 'hassan' @'localhost';
 
 
 
